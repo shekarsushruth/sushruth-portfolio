@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bebas Neue", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
   --font-sans: "Inter", sans-serif;
 }
 
 body {
-  background-color: #050505;
+  background-color: #000000;
   color: #f5f5f5;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -17,6 +17,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   text-transform: uppercase;
+}
+
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 768px) {
+  .stroke-text {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+  }
 }
 
 /* Custom scrollbar */

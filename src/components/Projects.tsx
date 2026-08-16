@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Play } from 'lucide-react';
+
 import { useState } from 'react';
 
 const PROJECTS = [
@@ -38,18 +38,20 @@ function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="group relative w-full aspect-video overflow-hidden bg-neutral-900 cursor-pointer"
+      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+      className="group relative w-full aspect-video overflow-hidden bg-[#0a0a0a] cursor-pointer mb-4 md:mb-16 rounded-sm"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
+      <motion.img
         src={project.posterUrl}
         alt={project.title}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-70'}`}
+        animate={{ scale: isHovered ? 1.05 : 1 }}
+        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 grayscale ${isHovered ? 'opacity-0' : 'opacity-60'}`}
       />
       
       {/* Video reveals on hover on desktop */}
@@ -59,23 +61,24 @@ function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-80"
           src={project.videoUrl}
         />
       </div>
 
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700" />
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
 
-      <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
-        <div className="flex justify-between items-start">
-          <span className="text-sm font-medium tracking-widest text-white uppercase">{project.category}</span>
-          <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-all duration-300 transform group-hover:scale-110">
-            <Play size={20} className="ml-1" fill="currentColor" />
+      <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between z-10 pointer-events-none">
+        <div className="flex justify-between items-start w-full">
+          <div className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase overflow-hidden transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+            {project.category}
           </div>
         </div>
         
-        <div>
-          <h3 className="font-display text-5xl md:text-7xl text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">{project.title}</h3>
+        <div className="flex justify-between items-end w-full overflow-hidden">
+          <h3 className="font-display font-bold text-5xl md:text-[6rem] text-white leading-none tracking-tighter transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[0.76,0,0.24,1]">
+            {project.title}
+          </h3>
         </div>
       </div>
     </motion.div>
@@ -84,19 +87,14 @@ function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
 
 export default function Projects() {
   return (
-    <section id="work" className="py-4 px-4 md:px-8 w-full max-w-[1600px] mx-auto">
-      <div className="flex items-end justify-between mb-16">
-        <h2 className="font-display text-5xl md:text-8xl text-white leading-none">WORK<br/>SHOWCASE</h2>
-        <p className="hidden md:block max-w-sm text-gray-400 text-sm">
-          A curated selection of commercial, narrative, and documentary projects showcasing a distinct cinematic voice.
-        </p>
+    <section id="work" className="py-12 md:py-16 px-6 md:px-12 w-full max-w-[1800px] mx-auto">
+      <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 border-b border-white/20 pb-8">
+        <h2 className="font-display font-bold text-6xl md:text-8xl text-white leading-none tracking-tighter">WORK<br/>SHOWCASE</h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-        {PROJECTS.map((project, idx) => (
-          <div key={project.id} className={idx % 2 === 1 ? 'md:mt-24' : ''}>
-            <ProjectCard project={project} />
-          </div>
+      <div className="flex flex-col w-full">
+        {PROJECTS.map((project) => (
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </section>
