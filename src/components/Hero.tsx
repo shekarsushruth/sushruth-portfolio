@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#000000]">
         <iframe
           className="absolute w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 grayscale"
-          src="https://player.vimeo.com/video/1160096016?background=1&autoplay=1&loop=1&byline=0&title=0"
+          src="https://player.vimeo.com/video/1219103536?background=1&autoplay=1&loop=1&byline=0&title=0"
           allow="autoplay; fullscreen; picture-in-picture"
         />
         <div className="absolute inset-0 bg-black/40" />

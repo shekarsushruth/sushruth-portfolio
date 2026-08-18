@@ -21,7 +21,7 @@ export default function Reel() {
         {!isPlaying && (
           <>
             <img 
-              src="https://i.vimeocdn.com/video/2114863950-ce5f4808a06fa84f4ae9620f379413b7cf11f98377e9ac2d64d254d9a29390ea-d_1920x1080?region=us" 
+              src="https://img.youtube.com/vi/ryQXusqWBGY/maxresdefault.jpg" 
               alt="Showreel Cover" 
               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-all duration-700 transform group-hover:scale-105"
             />
@@ -37,10 +37,11 @@ export default function Reel() {
         
         {isPlaying && (
           <iframe
-            src="https://player.vimeo.com/video/1160096016?autoplay=1&color=ffffff&title=0&byline=0&portrait=0"
+            src="https://www.youtube.com/embed/ryQXusqWBGY?autoplay=1&rel=0&controls=1&modestbranding=1&iv_load_policy=3"
             className="absolute inset-0 w-full h-full"
-            allow="autoplay; fullscreen; picture-in-picture"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
             allowFullScreen
+            style={{ border: 'none' }}
           />
         )}
       </motion.div>

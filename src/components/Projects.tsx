@@ -1,60 +1,61 @@
 import { motion } from 'motion/react';
 import { Play } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     id: 1,
-    title: 'PROJECT ONE',
+    title: 'WHATSAPP AI SUMMIT',
     youtubeId: 'KWtdolTO02M',
     posterUrl: 'https://img.youtube.com/vi/KWtdolTO02M/maxresdefault.jpg',
     isVertical: false
   },
   {
     id: 2,
-    title: 'PROJECT TWO',
+    title: 'FEATHERS OF STEEL',
     youtubeId: 'MqRVVysZy_U',
     posterUrl: 'https://img.youtube.com/vi/MqRVVysZy_U/maxresdefault.jpg',
     isVertical: false
   },
   {
     id: 3,
-    title: 'PROJECT THREE',
+    title: 'LONELINESS',
     youtubeId: 'S_6nCLUE-GI',
     posterUrl: 'https://img.youtube.com/vi/S_6nCLUE-GI/maxresdefault.jpg',
     isVertical: false
   },
   {
     id: 4,
-    title: 'PROJECT FOUR',
+    title: 'THE DARJEELING EXPRESS',
     youtubeId: 'GvYt6r68ibE',
     posterUrl: 'https://img.youtube.com/vi/GvYt6r68ibE/maxresdefault.jpg',
     isVertical: false
   },
   {
     id: 5,
-    title: 'PROJECT FIVE',
+    title: 'DARJEELING DIARIES',
     youtubeId: 'FbJPye4B54M',
     posterUrl: 'https://img.youtube.com/vi/FbJPye4B54M/maxresdefault.jpg',
     isVertical: false
   },
   {
     id: 6,
-    title: 'PROJECT SIX',
+    title: 'AAKANKSHA VOLUNTEER RECRUITMENT',
     youtubeId: 'Aa6gK7KAYsU',
     posterUrl: 'https://img.youtube.com/vi/Aa6gK7KAYsU/maxresdefault.jpg',
     isVertical: true
   },
   {
     id: 7,
-    title: 'PROJECT SEVEN',
+    title: 'FITOPUS LAUNCH VIDEO',
     youtubeId: 'l_AHfIlSwHA',
     posterUrl: 'https://img.youtube.com/vi/l_AHfIlSwHA/maxresdefault.jpg',
     isVertical: true
   }
 ];
 
-function ProjectCard({ project, className = "" }: { project: typeof PROJECTS[0]; className?: string }) {
+export function ProjectCard({ project, className = "" }: { project: typeof PROJECTS[0]; className?: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const aspectClass = project.isVertical ? 'aspect-[9/16]' : 'aspect-video';
 
@@ -107,8 +108,10 @@ function ProjectCard({ project, className = "" }: { project: typeof PROJECTS[0];
 }
 
 export default function Projects() {
-  const horizontalProjects = PROJECTS.filter(p => !p.isVertical);
-  const verticalProjects = PROJECTS.filter(p => p.isVertical);
+  // Remove project 7 from the home page
+  const homeProjects = PROJECTS.filter(p => p.id !== 7);
+  const horizontalProjects = homeProjects.filter(p => !p.isVertical);
+  const verticalProjects = homeProjects.filter(p => p.isVertical);
 
   return (
     <section id="work" className="py-12 md:py-16 px-6 md:px-12 w-full max-w-[1800px] mx-auto">
@@ -125,10 +128,26 @@ export default function Projects() {
       {verticalProjects.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 md:gap-12 mt-12 md:mt-24 w-full">
           {verticalProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <div 
+              key={project.id}
+              className={verticalProjects.length === 1 ? 'sm:col-span-2 lg:col-span-4 xl:col-span-4 flex justify-center' : ''}
+            >
+              <div className={verticalProjects.length === 1 ? 'w-full sm:w-1/2 lg:w-1/4 xl:w-1/4' : 'w-full'}>
+                <ProjectCard project={project} />
+              </div>
+            </div>
           ))}
         </div>
       )}
+
+      <div className="w-full flex justify-center mt-16 md:mt-24">
+        <Link 
+          to="/work"
+          className="px-8 py-4 bg-white text-black font-sans font-bold text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors"
+        >
+          View More
+        </Link>
+      </div>
     </section>
   );
 }
