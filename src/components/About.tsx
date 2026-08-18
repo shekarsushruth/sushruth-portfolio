@@ -71,7 +71,7 @@ export default function About() {
             <div>
               <h4 className="text-white font-sans text-xs font-bold uppercase tracking-widest mb-4">03. Post-Production</h4>
               <ul className="space-y-2 text-sm">
-                <li>Offline Editing</li>
+                <li>Editing</li>
                 <li>Color Grading</li>
                 <li>Sound Design</li>
                 <li>VFX/CGI</li>
