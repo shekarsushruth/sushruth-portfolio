@@ -24,7 +24,7 @@ export default function ClientLogos() {
         animate={{ x: ["0%", "-50%"] }}
         transition={{ 
           ease: "linear", 
-          duration: 30, // Adjust speed here
+          duration: 50, // Slowed down by 40%
           repeat: Infinity 
         }}
       >

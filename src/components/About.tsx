@@ -15,9 +15,9 @@ export default function About() {
             className="w-full aspect-square bg-[#0a0a0a] relative rounded-sm overflow-hidden"
           >
             <img 
-              src="https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?auto=format&fit=crop&q=80&w=1200" 
-              alt="Studio Setup" 
-              className="absolute inset-0 w-full h-full object-cover grayscale opacity-80" 
+              src="/profile.jpeg" 
+              alt="Sushruth" 
+              className="absolute inset-0 w-full h-full object-cover object-center" 
             />
           </motion.div>
         </div>
@@ -32,7 +32,7 @@ export default function About() {
               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
               className="text-white text-3xl md:text-5xl lg:text-[3.5rem] font-display font-bold uppercase tracking-tighter leading-[1.05]"
             >
-              We craft visually striking narratives that disrupt the ordinary.
+              I MAKE FILMS THAT FEEL DIFFERENT
             </motion.h2>
           </div>
           <motion.p 
@@ -42,7 +42,7 @@ export default function About() {
             transition={{ duration: 1, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
             className="text-gray-400 text-lg md:text-xl font-sans max-w-xl leading-relaxed mb-12"
           >
-            Blending high-end cinematography with bold editorial rhythm, we create work that demands attention across commercial and documentary landscapes.
+            From Music videos, commercials to documentaries, I bring a filmmaker’s eye, a curious mind, and a love for making ordinary ideas feel a little more cinematic.
           </motion.p>
           
           <motion.div 

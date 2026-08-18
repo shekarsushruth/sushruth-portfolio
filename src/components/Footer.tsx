@@ -15,17 +15,17 @@ export default function Footer() {
           >
             Got a project in mind?
           </motion.p>
-          <a href="mailto:hello@example.com" className="group flex flex-col items-center gap-8">
+          <a href="https://wa.me/9620426892" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-8">
             <div className="pb-4">
               <motion.h2 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-                className="font-display font-bold text-[12vw] text-white leading-[0.8] tracking-tighter group-hover:text-transparent transition-all duration-500"
+                className="font-display font-bold text-[10vw] md:text-[12vw] text-white leading-[0.8] tracking-tighter group-hover:text-transparent transition-all duration-500"
                 style={{ WebkitTextStroke: '2px white' }}
               >
-                LET'S TALK
+                LET'S CONNECT
               </motion.h2>
             </div>
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/30 text-white flex items-center justify-center transform group-hover:-translate-y-4 group-hover:bg-white group-hover:text-black transition-all duration-500 ease-[0.76,0,0.24,1]">
@@ -35,13 +35,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-sans font-bold uppercase tracking-widest text-gray-500 border-t border-white/20 pt-8">
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">Vimeo</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-center md:text-left">
+            <a href="tel:+919620426892" className="hover:text-white transition-colors">+91 9620426892</a>
+            <a href="mailto:shekarsushruth@gmail.com" className="hover:text-white transition-colors">shekarsushruth@gmail.com</a>
           </div>
-          
-          <div className="flex gap-4">
+          <div className="flex gap-4 text-center">
             <span>© {new Date().getFullYear()} SUSHRUTH STUDIO</span>
           </div>
         </div>
