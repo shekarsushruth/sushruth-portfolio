@@ -8,7 +8,7 @@ export default function Reel() {
   return (
     <section className="pt-12 pb-4 md:py-12 px-6 md:px-12 w-full max-w-[1800px] mx-auto border-t border-white/20">
       <div className="flex flex-col mb-6 md:mb-12">
-        <h2 className="font-display font-bold text-5xl md:text-7xl text-white tracking-tighter">DIRECTOR'S REEL</h2>
+        <h2 className="font-display font-bold text-5xl md:text-7xl text-white tracking-tighter">SHOWREEL</h2>
       </div>
       <motion.div 
         initial={{ opacity: 0, scale: 0.98 }}

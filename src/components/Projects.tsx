@@ -1,40 +1,62 @@
 import { motion } from 'motion/react';
-
+import { Play } from 'lucide-react';
 import { useState } from 'react';
 
 const PROJECTS = [
   {
     id: 1,
-    title: 'NEON DREAMS',
-    category: 'COMMERCIAL',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    posterUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200'
+    title: 'PROJECT ONE',
+    youtubeId: 'KWtdolTO02M',
+    posterUrl: 'https://img.youtube.com/vi/KWtdolTO02M/maxresdefault.jpg',
+    isVertical: false
   },
   {
     id: 2,
-    title: 'THE WILD',
-    category: 'DOCUMENTARY',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    posterUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200'
+    title: 'PROJECT TWO',
+    youtubeId: 'MqRVVysZy_U',
+    posterUrl: 'https://img.youtube.com/vi/MqRVVysZy_U/maxresdefault.jpg',
+    isVertical: false
   },
   {
     id: 3,
-    title: 'URBAN ECHO',
-    category: 'MUSIC VIDEO',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    posterUrl: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&q=80&w=1200'
+    title: 'PROJECT THREE',
+    youtubeId: 'S_6nCLUE-GI',
+    posterUrl: 'https://img.youtube.com/vi/S_6nCLUE-GI/maxresdefault.jpg',
+    isVertical: false
   },
   {
     id: 4,
-    title: 'SOLITUDE',
-    category: 'SHORT FILM',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    posterUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1200'
+    title: 'PROJECT FOUR',
+    youtubeId: 'GvYt6r68ibE',
+    posterUrl: 'https://img.youtube.com/vi/GvYt6r68ibE/maxresdefault.jpg',
+    isVertical: false
+  },
+  {
+    id: 5,
+    title: 'PROJECT FIVE',
+    youtubeId: 'FbJPye4B54M',
+    posterUrl: 'https://img.youtube.com/vi/FbJPye4B54M/maxresdefault.jpg',
+    isVertical: false
+  },
+  {
+    id: 6,
+    title: 'PROJECT SIX',
+    youtubeId: 'Aa6gK7KAYsU',
+    posterUrl: 'https://img.youtube.com/vi/Aa6gK7KAYsU/maxresdefault.jpg',
+    isVertical: true
+  },
+  {
+    id: 7,
+    title: 'PROJECT SEVEN',
+    youtubeId: 'l_AHfIlSwHA',
+    posterUrl: 'https://img.youtube.com/vi/l_AHfIlSwHA/maxresdefault.jpg',
+    isVertical: true
   }
 ];
 
-function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
-  const [isHovered, setIsHovered] = useState(false);
+function ProjectCard({ project, className = "" }: { project: typeof PROJECTS[0]; className?: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const aspectClass = project.isVertical ? 'aspect-[9/16]' : 'aspect-video';
 
   return (
     <motion.div
@@ -42,61 +64,71 @@ function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-      className="group relative w-full aspect-video overflow-hidden bg-[#0a0a0a] cursor-pointer mb-4 md:mb-16 rounded-sm"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`flex flex-col w-full ${className}`}
     >
-      <motion.img
-        src={project.posterUrl}
-        alt={project.title}
-        animate={{ scale: isHovered ? 1.05 : 1 }}
-        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 grayscale ${isHovered ? 'opacity-0' : 'opacity-60'}`}
-      />
-      
-      {/* Video reveals on hover on desktop */}
-      <div className={`absolute inset-0 transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'} hidden md:block`}>
-        <video
-          autoPlay={isHovered}
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-80"
-          src={project.videoUrl}
-        />
+      <div 
+        className={`group relative w-full ${aspectClass} overflow-hidden bg-[#0a0a0a] cursor-pointer rounded-sm`}
+        onClick={() => setIsPlaying(true)}
+      >
+        {isPlaying ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&rel=0&controls=1&modestbranding=1&iv_load_policy=3`}
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full absolute inset-0"
+            style={{ border: 'none' }}
+          />
+        ) : (
+          <>
+            <motion.img
+              src={project.posterUrl}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+            
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-16 h-16 md:w-24 md:h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+                <Play className="w-6 h-6 md:w-10 md:h-10 text-white ml-1 md:ml-2" fill="currentColor" />
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
-
-      <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between z-10 pointer-events-none">
-        <div className="flex justify-between items-start w-full">
-          <div className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase overflow-hidden transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-            {project.category}
-          </div>
-        </div>
-        
-        <div className="flex justify-between items-end w-full overflow-hidden">
-          <h3 className="font-display font-bold text-5xl md:text-[6rem] text-white leading-none tracking-tighter transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[0.76,0,0.24,1]">
-            {project.title}
-          </h3>
-        </div>
+      <div className="mt-4 md:mt-6">
+        <h3 className={`font-display font-bold ${project.isVertical ? 'text-2xl md:text-4xl' : 'text-3xl md:text-5xl'} text-white tracking-tighter`}>
+          {project.title}
+        </h3>
       </div>
     </motion.div>
   );
 }
 
 export default function Projects() {
+  const horizontalProjects = PROJECTS.filter(p => !p.isVertical);
+  const verticalProjects = PROJECTS.filter(p => p.isVertical);
+
   return (
     <section id="work" className="py-12 md:py-16 px-6 md:px-12 w-full max-w-[1800px] mx-auto">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 border-b border-white/20 pb-8">
         <h2 className="font-display font-bold text-6xl md:text-8xl text-white leading-none tracking-tighter">WORK<br/>SHOWCASE</h2>
       </div>
       
-      <div className="flex flex-col w-full">
-        {PROJECTS.map((project) => (
+      <div className="flex flex-col w-full gap-12 md:gap-24">
+        {horizontalProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+
+      {verticalProjects.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 md:gap-12 mt-12 md:mt-24 w-full">
+          {verticalProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
