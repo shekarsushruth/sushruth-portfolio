@@ -1,14 +1,28 @@
 import { motion } from 'motion/react';
+import { useState } from 'react';
 
 export default function Hero() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
   return (
     <section id="hero" className="relative h-screen w-full flex flex-col justify-between px-6 py-6 md:px-12 md:py-12 overflow-hidden bg-[#000000]">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#000000]">
+      {/* Background Video Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#000000] will-change-transform transform-gpu">
+        {/* Instant Poster Placeholder */}
+        <img 
+          src="https://vumbnail.com/1219114703.jpg" 
+          alt="Video Placeholder"
+          className={`absolute inset-0 w-full h-full object-cover grayscale transition-opacity duration-[2000ms] ease-in-out will-change-opacity ${isVideoLoaded ? 'opacity-0' : 'opacity-50'}`}
+        />
+        
+        {/* Vimeo iframe */}
         <iframe
-          className="absolute w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 grayscale"
-          src="https://player.vimeo.com/video/1219114703?background=1&autoplay=1&loop=1&byline=0&title=0"
+          title="Hero Background Video"
+          className={`absolute w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grayscale transition-opacity duration-[2000ms] ease-in-out will-change-opacity transform-gpu ${isVideoLoaded ? 'opacity-50' : 'opacity-0'}`}
+          src="https://player.vimeo.com/video/1219114703?background=1&autoplay=1&loop=1&byline=0&title=0&dnt=1"
           allow="autoplay; fullscreen; picture-in-picture"
+          loading="eager"
+          onLoad={() => setIsVideoLoaded(true)}
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
