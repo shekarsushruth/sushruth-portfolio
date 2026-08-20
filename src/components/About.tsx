@@ -15,9 +15,9 @@ export default function About() {
             className="w-full aspect-square bg-[#0a0a0a] relative rounded-sm overflow-hidden"
           >
             <img 
-              src="/profile.jpeg" 
+              src="/dp2.png" 
               alt="Sushruth" 
-              className="absolute inset-0 w-full h-full object-cover object-center" 
+              className="absolute inset-0 w-full h-full object-cover object-center grayscale" 
             />
           </motion.div>
         </div>
@@ -57,6 +57,7 @@ export default function About() {
               <ul className="space-y-2 text-sm">
                 <li>Commercials</li>
                 <li>Music Videos</li>
+                <li>Short form</li>
                 <li>Short Films</li>
               </ul>
             </div>
